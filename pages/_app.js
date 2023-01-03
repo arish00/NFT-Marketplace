@@ -7,7 +7,7 @@ import '../styles/globals.css';
 const Marketplace = ({ Component, pageProps }) => (
 
   <ThemeProvider attribute="class">
-    <div className="dark:bg-nft-dark bg-white min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-nft-dark">
       <Navbar />
       <div className="pt-65">
         <Component {...pageProps} />

@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:tailwindcss/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -11,8 +11,15 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'tailwindcss'],
   rules: {
+    'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/enforces-negative-arbitrary-values': 'warn',
+    'tailwindcss/enforces-shorthand': 'warn',
+    'tailwindcss/migration-from-tailwind-2': 'warn',
+    'tailwindcss/no-arbitrary-value': 'off',
+    'tailwindcss/no-custom-classname': 'warn',
+    'tailwindcss/no-contradicting-classname': 'error',
     'no-console': 0,
     'jsx-a11y/label-has-associated-control': 0,
     'no-nested-ternary': 0,
@@ -64,5 +71,26 @@ module.exports = {
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],
+
+  },
+  settings: {
+    tailwindcss: {
+      // These are the default values but feel free to customize
+      callees: ['classnames', 'clsx', 'ctl'],
+      config: 'tailwind.config.js',
+      cssFiles: [
+        '**/*.css',
+        '!**/node_modules',
+        '!**/.*',
+        '!**/dist',
+        '!**/build',
+      ],
+      cssFilesRefreshRate: 5_000,
+      removeDuplicates: true,
+      skipClassAttribute: false,
+      whitelist: [],
+      tags: [],
+      classRegex: '^class(Name)?$', // can be modified to support custom attributes. E.g. "^tw$" for `twin.macro`
+    },
   },
 };
