@@ -4,5 +4,6 @@ import Button from './Button';
 import Banner from './Banner.jsx';
 import CreatorCard from './CreatorCard.jsx';
 import NFTCard from './NFTCard.jsx';
+import Input from './Input.jsx';
 
-export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard };
+export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard, Input };
