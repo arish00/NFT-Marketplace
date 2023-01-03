@@ -83,6 +83,7 @@ const Home = () => {
                 nft={{
                   i,
                   name: `Nifty NFT ${i}`,
+                  price: (10 - i * 0.532).toFixed(2),
                   seller: `0x${makeId(3)}...${makeId(4)}`,
                   ownder: `0x${makeId(3)}...${makeId(4)}`,
                   description: 'Cool NFT on sale',
