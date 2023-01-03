@@ -2,6 +2,7 @@ import Script from 'next/script';
 import { ThemeProvider } from 'next-themes';
 
 import { Footer, Navbar } from '../components';
+import Home from '.';
 import '../styles/globals.css';
 
 const Marketplace = ({ Component, pageProps }) => (
@@ -12,6 +13,7 @@ const Marketplace = ({ Component, pageProps }) => (
       <div className="pt-65">
         <Component {...pageProps} />
       </div>
+
       <Footer />
     </div>
 
