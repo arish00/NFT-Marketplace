@@ -51,7 +51,7 @@ const ButtonGroup = ({ setActive, router }) => {
         classStyles="mx-2 rounded-xl"
         handleClick={() => {
           setActive('');
-          router.push('./create-nfts');
+          router.push('./create-nft');
           console.log('running');
         }}
       />
