@@ -7,6 +7,8 @@ import images from '../assets';
 import NFTCard from '../components/NFTCard.jsx';
 import { makeId } from '../utils/makeId';
 import { NFTContext } from '../context/NFTContext';
+import { getCreators } from '../utils/getTopCreators';
+import { shortenAddress } from '../utils/shortenAddress';
 
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);
@@ -55,6 +57,9 @@ const Home = () => {
     };
   });
 
+  const topCreators = getCreators(nfts);
+  console.log(topCreators);
+
   return (
     <div className="flex justify-center p-12 sm:px-4">
       <div className="w-full minmd:w-4/5">
@@ -70,8 +75,8 @@ const Home = () => {
 
         <div className="relative mt-3 flex max-w-full flex-1" ref={parentRef}>
           <div className="no-scrollbar flex w-max select-none flex-row overflow-x-scroll" ref={scrollRef}>
-            {[6, 7, 8, 9, 10].map((i) => (
-              <CreatorCard key={`creator-${i}`} rank={i} creatorImage={images[`creator${i}`]} creatorName={`0x${makeId(3)}...${makeId(4)}`} creatorEths={10 - i * 0.5} />
+            {topCreators.map((creator, i) => (
+              <CreatorCard key={creator.seller} rank={i + 1} creatorImage={images[`creator${i + 1}`]} creatorName={shortenAddress(creator.seller)} creatorEths={creator.sum} />
             ))}
             {!hideButton && (
             <>
