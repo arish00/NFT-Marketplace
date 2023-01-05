@@ -113,7 +113,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <nav className="flexBetween fixed z-10 w-full flex-row border-b border-nft-gray-1 bg-white p-4 dark:border-nft-black-1 dark:bg-nft-dark">
+    <nav className="flexBetween  z-10 w-full flex-row border-b border-nft-gray-1 bg-white p-4 dark:border-nft-black-1 dark:bg-nft-dark">
       <div className="flex flex-1 flex-row justify-start">
         <Link href="/">
           <div className="flexCenter cursor-pointer md:hidden" onClick={() => setActive('Explore NFTs')}>
