@@ -6,5 +6,6 @@ import CreatorCard from './CreatorCard.jsx';
 import NFTCard from './NFTCard.jsx';
 import Input from './Input.jsx';
 import Loader from './Loader.jsx';
+import Modal from './Modal.jsx';
 
-export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard, Input, Loader };
+export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard, Input, Loader, Modal };
