@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 import images from '../assets';
 import Button from './Button';
@@ -24,7 +24,7 @@ const Footer = () => {
           </div>
           <p className="mt-6 font-poppins text-base font-semibold text-nft-black-1 dark:text-white">Get the latest updates</p>
           <div className="flexBetween mt-6 w-357 rounded-md border border-nft-gray-2 bg-white dark:border-nft-black-2 dark:bg-nft-black-2 md:w-full minlg:w-557">
-            <input type="email" placeholder="Your Email" className=" h-full w-full flex-1 rounded-md bg-white px-4 font-poppins text-xs font-normal text-nft-black-1 outline-none dark:bg-nft-black-2 dark:text-white minlg:text-lg" />
+            <input type="email" placeholder="Your Email" className="h-full w-full flex-1 rounded-md bg-white px-4 font-poppins text-xs font-normal text-nft-black-1 outline-none dark:bg-nft-black-2 dark:text-white minlg:text-lg" />
             <div className="flex-initial">
               <Button
                 btnName="Email me"

@@ -58,7 +58,11 @@ const Home = () => {
   return (
     <div className="flex justify-center p-12 sm:px-4">
       <div className="w-full minmd:w-4/5">
-        <Banner name="Discover, collect, and sell extraordinary NFTs" childStyles="md:text-4xl sm:text-3xl xs-text-xl text-left" parentStyles="justify-start mb-6 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl" />
+        <Banner
+          name={(<>Discover, collect, and sell <br /> extraordinary NFTs</>)}
+          childStyles="md:text-4xl sm:text-2xl xs:text-xl text-left"
+          parentStyle="justify-start mb-7 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
+        />
 
         <div>
           <h1 className="ml-4 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">Best Creators</h1>

@@ -12,10 +12,9 @@ const Marketplace = ({ Component, pageProps }) => (
     <ThemeProvider attribute="class">
       <div className="min-h-screen bg-white dark:bg-nft-dark">
         <Navbar />
-        <div className="pt-65">
+        <div className="">
           <Component {...pageProps} />
         </div>
-
         <Footer />
       </div>
 
