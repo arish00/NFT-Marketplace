@@ -37,7 +37,7 @@ const PaymentBodyCmp = ({ nft, nftCurrency }) => (
   </div>
 );
 
-const AssetDetails = () => {
+const NFTDetails = () => {
   const { nftCurrency, buyNFT, currentAccount, isLoadingNFT } = useContext(NFTContext);
   const [nft, setNft] = useState({ image: '', itemId: '', name: '', owner: '', price: '', seller: '' });
   const [paymentModal, setPaymentModal] = useState(false);
@@ -73,7 +73,7 @@ const AssetDetails = () => {
 
   return (
     <div className="relative flex min-h-screen justify-center md:flex-col">
-      <div className="flexCenter relative flex-1 border-r border-nft-gray-1 p-12 dark:border-nft-black-1 md:border-r-0 md:border-b sm:px-4">
+      <div className="flexCenter relative flex-1 border-r border-nft-gray-1 dark:border-nft-black-1 md:border-r-0 md:border-b sm:px-4">
         <div className="relative h-557 w-557 md:mt-20 sm:h-300 sm:w-full minmd:h-2/3 minmd:w-2/3 ">
           <Image src={nft.image || images[`nft${nft.i}`]} objectFit="cover" className=" rounded-xl shadow-lg" layout="fill" />
         </div>
@@ -156,6 +156,22 @@ const AssetDetails = () => {
       )}
 
       {isLoadingNFT && (
+      <Modal
+        header="Buying NFT..."
+        body={
+        (
+          <div className="flexCenter flex-col text-center">
+            <div className="relative h-52 w-52">
+              <Loader />
+            </div>
+          </div>
+        )
+}
+        handleClose={() => setPaymentModal(false)}
+      />
+      )}
+
+      {isLoadingNFT && (
         <Modal
           header="Buying NFT..."
           body={(
@@ -197,4 +213,4 @@ const AssetDetails = () => {
   );
 };
 
-export default AssetDetails;
+export default NFTDetails;

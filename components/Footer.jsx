@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="flexStart flex-1 flex-col">
           <div className="flexCenter cursor-pointer">
             <Image src={images.logo02} objectFit="contain" width={32} height={32} alt="logo" />
-            <p className=" ml-1 text-lg font-semibold text-nft-dark dark:text-white">CryptoKet</p>
+            <p className=" ml-1 text-lg font-semibold text-nft-dark dark:text-white">Bopensea</p>
           </div>
           <p className="mt-6 font-poppins text-base font-semibold text-nft-black-1 dark:text-white">Get the latest updates</p>
           <div className="flexBetween mt-6 w-357 rounded-md border border-nft-gray-2 bg-white dark:border-nft-black-2 dark:bg-nft-black-2 md:w-full minlg:w-557">
@@ -36,14 +36,14 @@ const Footer = () => {
         </div>
 
         <div className="flexBetweenStart ml-10 flex-1 flex-wrap md:ml-0 md:mt-8">
-          <FooterLinks heading="CryptoKet" items={['Explore', 'How it Works', 'Contact Us']} />
+          <FooterLinks heading="Bopensea" items={['Explore', 'How it Works', 'Contact Us']} />
           <FooterLinks heading="Support" items={['Help Center', 'Terms of service', 'Legal', 'Privacy policy']} extraClasses="ml-4" />
         </div>
       </div>
 
       <div className="flexCenter mt-5 w-full border-t border-nft-gray-1 px-16 dark:border-nft-black-1 sm:px-4">
         <div className="flexBetween mt-7 w-full flex-row sm:flex-col minmd:w-4/5">
-          <p className="font-poppins text-base font-semibold text-nft-black-1 dark:text-white">CrpytoKet, Inc. All Rights Reserved</p>
+          <p className="font-poppins text-base font-semibold text-nft-black-1 dark:text-white">Bopensea, Inc. All Rights Reserved</p>
           <div className="flex flex-row sm:mt-4">
             {[images.instagram, images.twitter, images.telegram, images.discord].map((image, index) => (
               <div className="mx-2 cursor-pointer" key={`image ${index}`}>

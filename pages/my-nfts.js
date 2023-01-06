@@ -69,14 +69,14 @@ const MyNFTs = () => {
     <div className="flex min-h-screen w-full flex-col items-center justify-start">
       <div className="flexCenter w-full flex-col">
         <Banner
-          name="Your Nifty NFTs"
+          name="Browse your NFTs"
           childStyles="text-center mb-4"
           parentStyle="h-80 justify-center"
         />
 
         <div className="flexCenter z-0 -mt-20 flex-col">
-          <div className="flexCenter h-40 w-40 rounded-full bg-nft-black-2 p-1 sm:h-36 sm:w-36">
-            <Image src={images.creator1} className="rounded-full object-cover" objectFit="cover" />
+          <div className="flexCenter h-40 w-40 rounded-full bg-white p-1 dark:bg-nft-black-2 sm:h-36 sm:w-36">
+            <Image src={images.creator1} className="rounded-full  object-cover" objectFit="cover" />
           </div>
           <p className="mt-6 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white">{shortenAddress(currentAccount)}</p>
         </div>
