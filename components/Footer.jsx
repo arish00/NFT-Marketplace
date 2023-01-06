@@ -45,11 +45,21 @@ const Footer = () => {
         <div className="flexBetween mt-7 w-full flex-row sm:flex-col minmd:w-4/5">
           <p className="font-poppins text-base font-semibold text-nft-black-1 dark:text-white">Bopensea, Inc. All Rights Reserved</p>
           <div className="flex flex-row sm:mt-4">
-            {[images.instagram, images.twitter, images.telegram, images.discord].map((image, index) => (
-              <div className="mx-2 cursor-pointer" key={`image ${index}`}>
-                <Image src={image} key={index} objectFit="contain" width={24} height={24} alt="social" className={theme === 'light' ? 'invert' : undefined} />
-              </div>
-            ))}
+            <div className="mx-2 cursor-pointer">
+              <a href="https://www.linkedin.com/in/yasinduneth/" target="_blank" rel="noopener noreferrer">
+                <Image src={images.linkedin} key={images.linkedin} objectFit="contain" width={24} height={24} alt="linkedin" className={theme === 'light' ? 'invert' : undefined} />
+              </a>
+            </div>
+            <div className="mx-2 cursor-pointer">
+              <a href="https://github.com/YasinduNethmina" target="_blank" rel="noopener noreferrer">
+                <Image src={images.github} key={images.github} objectFit="contain" width={24} height={24} alt="github" className={theme === 'light' ? 'invert' : undefined} />
+              </a>
+            </div>
+            <div className="mx-2 cursor-pointer">
+              <a href="https://twitter.com/yasindu_neth" target="_blank" rel="noopener noreferrer">
+                <Image src={images.twitter} key={images.twitter} objectFit="contain" width={24} height={24} alt="twitter" className={theme === 'light' ? 'invert' : undefined} />
+              </a>
+            </div>
           </div>
         </div>
       </div>

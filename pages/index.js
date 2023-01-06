@@ -125,6 +125,15 @@ const Home = () => {
                     creatorEths={creator.sumall}
                   />
                 ))}
+                {/* {[6, 7, 8, 9, 10].map((i) => (
+                  <CreatorCard
+                    key={`creator-${i}`}
+                    rank={i}
+                    creatorImage={images[`creator${i}`]}
+                    creatorName={`0x${makeid(3)}...${makeid(4)}`}
+                    creatorEths={105 - i * 0.534}
+                  />
+                ))} */}
                 {!hideButton && (
                 <>
                   <div onClick={() => { handleScroll('left'); }} className="absolute top-45 left-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">
@@ -147,6 +156,20 @@ const Home = () => {
               </div>
               <div className="mt-3 flex w-full flex-wrap justify-start md:justify-center">
                 {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+
+                {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                  <NFTCard
+                    key={`nft-${i}`}
+                    nft={{
+                      i,
+                      name: `Nifty NFT ${i}`,
+                      price: (10 - i * 0.534).toFixed(2),
+                      seller: `0x${makeid(3)}...${makeid(4)}`,
+                      owner: `0x${makeid(3)}...${makeid(4)}`,
+                      description: 'Cool NFT on Sale',
+                    }}
+                  />
+                ))} */}
               </div>
 
             </div>
