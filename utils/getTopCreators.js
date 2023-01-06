@@ -9,10 +9,12 @@ export const getCreators = (array) => {
 
   Object.entries(result).forEach((itm) => {
     const seller = itm[0];
-    const sum = itm[1].map((item) => Number(item.price)).reduce((prev, curr) => prev + curr, 0);
+    const sumall = itm[1].map((item) => Number(item.price)).reduce((prev, curr) => prev + curr, 0);
 
-    finalized.push({ seller, sum });
+    finalized.push({ seller, sumall });
   });
+
+  finalized.sort((a, b) => b.sumall - a.sumall);
 
   return finalized;
 };

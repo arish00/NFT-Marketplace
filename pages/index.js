@@ -118,7 +118,13 @@ const Home = () => {
             <div className="relative mt-3 flex max-w-full flex-1" ref={parentRef}>
               <div className="no-scrollbar flex w-max select-none flex-row overflow-x-scroll" ref={scrollRef}>
                 {topCreators.map((creator, i) => (
-                  <CreatorCard key={creator.seller} rank={i + 1} creatorImage={images[`creator${i + 1}`]} creatorName={shortenAddress(creator.seller)} creatorEths={creator.sum} />
+                  <CreatorCard
+                    key={creator.seller}
+                    rank={i + 1}
+                    creatorImage={images[`creator${i + 1}`]}
+                    creatorName={shortenAddress(creator.seller)}
+                    creatorEths={creator.sumall}
+                  />
                 ))}
                 {!hideButton && (
                 <>

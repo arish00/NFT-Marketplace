@@ -8,7 +8,7 @@ import { NFTContext } from '../context/NFTContext';
 import { Input, Button, Loader } from '../components/index';
 import images from '../assets';
 
-const createNFT = () => {
+const CreateNFT = () => {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, setFormInput] = useState({ price: '', name: '', description: '' });
   const { theme } = useTheme();
@@ -17,12 +17,8 @@ const createNFT = () => {
 
   const onDrop = useCallback(async (acceptedFile) => {
     const url = await uploadToIPFS(acceptedFile[0]);
-
-    console.log({ url });
     setFileUrl(url);
   }, []);
-
-  console.log(formInput);
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({ onDrop, accept: 'image/*', maxSize: 5000000 });
 
@@ -78,4 +74,4 @@ const createNFT = () => {
   );
 };
 
-export default createNFT;
+export default CreateNFT;

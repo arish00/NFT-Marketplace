@@ -43,8 +43,6 @@ export const NFTProvider = ({ children }) => {
     } else {
       console.log('No acccounts found.');
     }
-
-    console.log({ accounts });
   };
 
   useEffect(() => {
