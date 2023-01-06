@@ -6,14 +6,11 @@ import { create as ipfsHttpClient } from 'ipfs-http-client';
 
 import { MarketAddress, MarketAddressABI } from './constants';
 
-// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 const projectId = '2JqlvSW7G2G3k0Oigl1X9RDdUqm';
-const projectSecretKey = '4c03ca2f80cce50577846914c957daa9';
+const projectSecretKey = process.env.NEXT_PUBLIC_INFURA_SECRECT_KEY;
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   'base64',
 )}`;
-
-const subdomain = 'https://yasindu-nft-marketplace.infura-ipfs.io';
 
 const client = ipfsHttpClient({
   host: 'infura-ipfs.io',
@@ -67,6 +64,22 @@ export const NFTProvider = ({ children }) => {
       console.log('Error uploading file to IPFS.', error);
     }
   };
+  const createSale = async (url, formInputPrice, isReselling, id) => {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const price = ethers.utils.parseUnits(formInputPrice, 'ether');
+    const contract = fetchContract(signer);
+    const listingPrice = await contract.getListingPrice();
+
+    const transaction = !isReselling
+      ? await contract.createToken(url, price, { value: listingPrice.toString() }) : await contract.resellToken(id, price, { value: listingPrice.toString() });
+
+    setIsLoadingNFT(true);
+    await transaction.wait();
+  };
 
   const createNFT = async (formInput, fileUrl, router) => {
     const { name, description, price } = formInput;
@@ -87,23 +100,6 @@ export const NFTProvider = ({ children }) => {
     }
   };
 
-  const createSale = async (url, formInputPrice, isReselling, id) => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
-    const price = ethers.utils.parseUnits(formInputPrice, 'ether');
-    const contract = fetchContract(signer);
-    const listingPrice = await contract.getListingPrice();
-
-    const transaction = !isReselling
-      ? await contract.createToken(url, price, { value: listingPrice.toString() }) : await contract.resellToken(id, price, { value: listingPrice.toString() });
-
-    setIsLoadingNFT(true);
-    await transaction.wait();
-  };
-
   const fetchNFTs = async () => {
     setIsLoadingNFT(false);
 
@@ -114,7 +110,6 @@ export const NFTProvider = ({ children }) => {
 
     const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
       const tokenURI = await contract.tokenURI(tokenId);
-      const metadata = await axios.get(tokenURI);
       const { data: { image, name, description } } = await axios.get(tokenURI);
       const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
 

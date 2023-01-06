@@ -46,7 +46,6 @@ const NFTDetails = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // disable body scroll when navbar is open
     if (paymentModal || successModal) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -71,6 +70,8 @@ const NFTDetails = () => {
 
   if (isLoading) return <Loader />;
 
+  console.log(nft.seller);
+
   return (
     <div className="relative flex min-h-screen justify-center md:flex-col">
       <div className="flexCenter relative flex-1 border-r border-nft-gray-1 dark:border-nft-black-1 md:border-r-0 md:border-b sm:px-4">
@@ -90,7 +91,7 @@ const NFTDetails = () => {
             <div className="relative mr-2 h-12 w-12 minlg:h-20 minlg:w-20">
               <Image src={images.creator1} objectFit="cover" className="rounded-full" />
             </div>
-            <p className="font-poppins text-sm font-semibold text-nft-black-1 dark:text-white minlg:text-lg">{shortenAddress(nft.seller)}</p>
+            <p className="font-poppins text-sm font-semibold text-nft-black-1 dark:text-white minlg:text-lg">{shortenAddress(nft.owner)}</p>
           </div>
         </div>
 

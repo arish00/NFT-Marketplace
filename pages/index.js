@@ -5,7 +5,6 @@ import { useTheme } from 'next-themes';
 import { Banner, CreatorCard, SearchBar, Loader } from '../components/index';
 import images from '../assets';
 import NFTCard from '../components/NFTCard.jsx';
-import { makeId } from '../utils/makeId';
 import { NFTContext } from '../context/NFTContext';
 import { getCreators } from '../utils/getTopCreators';
 import { shortenAddress } from '../utils/shortenAddress';
@@ -148,21 +147,6 @@ const Home = () => {
               </div>
               <div className="mt-3 flex w-full flex-wrap justify-start md:justify-center">
                 {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
-
-                {/* Demo NFTs */}
-                {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-              <NFTCard
-                key={`nft-${i}`}
-                nft={{
-                  i,
-                  name: `Nifty NFT ${i}`,
-                  price: (10 - i * 0.532).toFixed(2),
-                  seller: `0x${makeId(3)}...${makeId(4)}`,
-                  ownder: `0x${makeId(3)}...${makeId(4)}`,
-                  description: 'Cool NFT on sale',
-                }}
-              />
-            ))} */}
               </div>
 
             </div>

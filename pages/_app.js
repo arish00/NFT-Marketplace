@@ -3,7 +3,6 @@ import { ThemeProvider } from 'next-themes';
 
 import { NFTProvider } from '../context/NFTContext';
 import { Footer, Navbar } from '../components';
-import Home from '.';
 import '../styles/globals.css';
 
 const Marketplace = ({ Component, pageProps }) => (
