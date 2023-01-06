@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { NFTContext } from '../context/NFTContext';
 import { shortenAddress } from '../utils/shortenAddress';
-import { Loader, NFTCard, Banner } from '../components';
+import { Loader, NFTCard, SearchBar, Banner } from '../components';
 import images from '../assets';
 
 const MyNFTs = () => {
@@ -88,7 +88,9 @@ const MyNFTs = () => {
         </div>
       ) : (
         <div className="flexCenter w-full flex-col p-12 sm:px-4 minmd:w-4/5">
-
+          <div className="flex w-full flex-1 flex-row px-4 sm:flex-col xs:px-0 minlg:px-8">
+            <SearchBar activeSelect={activeSelect} setActiveSelect={setActiveSelect} handleSearch={onHandleSearch} clearSearch={onClearSearch} />
+          </div>
           <div className="mt-3 flex w-full flex-wrap">
             {nfts.map((nft) => <NFTCard key={`nft-${nft.tokenId}`} nft={nft} onProfilePage />)}
           </div>

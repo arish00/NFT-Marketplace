@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { Banner, CreatorCard } from '../components/index';
 
+import { Banner, CreatorCard, SearchBar, Loader } from '../components/index';
 import images from '../assets';
 import NFTCard from '../components/NFTCard.jsx';
 import { makeId } from '../utils/makeId';
@@ -15,16 +15,55 @@ const Home = () => {
   const [hideButton, setHideButton] = useState(false);
   const { theme } = useTheme();
   const [nfts, setNfts] = useState([]);
+  const [nftsCopy, setNftsCopy] = useState([]);
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
+  const [activeSelect, setActiveSelect] = useState('Recently added');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchNFTs()
       .then((items) => {
         setNfts(items);
-        console.log(items);
+        setNftsCopy(items);
+        setIsLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const sortedNfts = [...nfts];
+
+    switch (activeSelect) {
+      case 'Price (low to high)':
+        setNfts(sortedNfts.sort((a, b) => a.price - b.price));
+        break;
+      case 'Price (high to low)':
+        setNfts(sortedNfts.sort((a, b) => b.price - a.price));
+        break;
+      case 'Recently added':
+        setNfts(sortedNfts.sort((a, b) => b.tokenId - a.tokenId));
+        break;
+      default:
+        setNfts(nfts);
+        break;
+    }
+  }, [activeSelect]);
+
+  const onHandleSearch = (value) => {
+    const filteredNfts = nfts.filter(({ name }) => name.toLowerCase().includes(value.toLowerCase()));
+
+    if (filteredNfts.length === 0) {
+      setNfts(nftsCopy);
+    } else {
+      setNfts(filteredNfts);
+    }
+  };
+
+  const onClearSearch = () => {
+    if (nfts.length && nftsCopy.length) {
+      setNfts(nftsCopy);
+    }
+  };
 
   const handleScroll = (direction) => {
     const { current } = scrollRef;
@@ -37,7 +76,7 @@ const Home = () => {
     }
   };
 
-  // Hide arrows when all creato cards fit with the screen
+  // Hide arrows when all creator cards fit with the screen
   const isScrollable = () => {
     const { current } = scrollRef;
     const { current: parent } = parentRef;
@@ -57,8 +96,7 @@ const Home = () => {
     };
   });
 
-  const topCreators = getCreators(nfts);
-  console.log(topCreators);
+  const topCreators = getCreators(nftsCopy);
 
   return (
     <div className="flex justify-center p-12 sm:px-4">
@@ -69,36 +107,44 @@ const Home = () => {
           parentStyle="justify-start mb-7 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
         />
 
-        <div>
-          <h1 className="ml-4 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">Best Creators</h1>
-        </div>
+        {!isLoading && !nfts.length ? (
+          <h1 className="ml-4 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">That&apos;s weird... No NFTs for sale!</h1>
+        ) : isLoading ? <Loader /> : (
+          <>
+            <div>
+              <h1 className="ml-4 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">Top Sellers</h1>
+            </div>
 
-        <div className="relative mt-3 flex max-w-full flex-1" ref={parentRef}>
-          <div className="no-scrollbar flex w-max select-none flex-row overflow-x-scroll" ref={scrollRef}>
-            {topCreators.map((creator, i) => (
-              <CreatorCard key={creator.seller} rank={i + 1} creatorImage={images[`creator${i + 1}`]} creatorName={shortenAddress(creator.seller)} creatorEths={creator.sum} />
-            ))}
-            {!hideButton && (
-            <>
-              <div onClick={() => { handleScroll('left'); }} className="absolute top-45 left-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">
-                <Image src={images.left} layout="fill" objectFit="contain" alt="left-arrow" className={theme === 'light' && 'invert'} />
+            <div className="relative mt-3 flex max-w-full flex-1" ref={parentRef}>
+              <div className="no-scrollbar flex w-max select-none flex-row overflow-x-scroll" ref={scrollRef}>
+                {topCreators.map((creator, i) => (
+                  <CreatorCard key={creator.seller} rank={i + 1} creatorImage={images[`creator${i + 1}`]} creatorName={shortenAddress(creator.seller)} creatorEths={creator.sum} />
+                ))}
+                {!hideButton && (
+                <>
+                  <div onClick={() => { handleScroll('left'); }} className="absolute top-45 left-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">
+                    <Image src={images.left} layout="fill" objectFit="contain" alt="left-arrow" className={theme === 'light' && 'invert'} />
+                  </div>
+                  <div onClick={() => { handleScroll('right'); }} className="absolute top-45 right-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">
+                    <Image src={images.right} layout="fill" objectFit="contain" alt="right-arrow" className={theme === 'light' && 'invert'} />
+                  </div>
+                </>
+                )}
               </div>
-              <div onClick={() => { handleScroll('right'); }} className="absolute top-45 right-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">
-                <Image src={images.right} layout="fill" objectFit="contain" alt="right-arrow" className={theme === 'light' && 'invert'} />
-              </div>
-            </>
-            )}
-          </div>
 
-        </div>
-        <div className="mt-10">
-          <div className="flexBetween mx-4 sm:flex-col sm:items-start xs:mx-0 minlg:mx-8">
-            <h1 className="flex-1 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white sm:mb-4 minlg:text-4xl">Hot Bids</h1>
-            <div>SearchBar</div>
-          </div>
-          <div className="mt-3 flex w-full flex-wrap justify-start md:justify-center">
-            {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            </div>
+            <div className="mt-10">
+              <div className="flexBetween mx-4 sm:flex-col sm:items-start xs:mx-0 minlg:mx-8">
+                <h1 className="flex-1 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white sm:mb-4 minlg:text-4xl">Hot NFTs</h1>
+                <div className="flex flex-2 flex-row sm:w-full sm:flex-col">
+                  <SearchBar activeSelect={activeSelect} setActiveSelect={setActiveSelect} handleSearch={onHandleSearch} clearSearch={onClearSearch} />
+                </div>
+              </div>
+              <div className="mt-3 flex w-full flex-wrap justify-start md:justify-center">
+                {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+
+                {/* Demo NFTs */}
+                {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
               <NFTCard
                 key={`nft-${i}`}
                 nft={{
@@ -110,10 +156,13 @@ const Home = () => {
                   description: 'Cool NFT on sale',
                 }}
               />
-            ))}
-          </div>
+            ))} */}
+              </div>
 
-        </div>
+            </div>
+          </>
+        )}
+
       </div>
     </div>
   );
