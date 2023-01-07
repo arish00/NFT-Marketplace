@@ -112,8 +112,6 @@ const Home = () => {
 
   const topCreators = getCreators(nftsCopy);
 
-  console.log(imageList)
-
   return (
     <div className="flex justify-center p-12 sm:px-4">
       <div className="w-full minmd:w-4/5">
