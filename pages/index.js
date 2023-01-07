@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
+import {listAll} from "firebase/storage";
 import { useTheme } from 'next-themes';
 
 import { Banner, CreatorCard, SearchBar, Loader } from '../components/index';
@@ -8,9 +9,11 @@ import NFTCard from '../components/NFTCard.jsx';
 import { NFTContext } from '../context/NFTContext';
 import { getCreators } from '../utils/getTopCreators';
 import { shortenAddress } from '../utils/shortenAddress';
+import { makeid } from '../utils/makeId';
 
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);
+  const [imageList, setImageList] = useState([])
   const [hideButton, setHideButton] = useState(false);
   const { theme } = useTheme();
   const [nfts, setNfts] = useState([]);
@@ -125,7 +128,7 @@ const Home = () => {
                     creatorEths={creator.sumall}
                   />
                 ))}
-                {/* {[6, 7, 8, 9, 10].map((i) => (
+                {[6, 7, 8, 9, 10].map((i) => (
                   <CreatorCard
                     key={`creator-${i}`}
                     rank={i}
@@ -133,7 +136,7 @@ const Home = () => {
                     creatorName={`0x${makeid(3)}...${makeid(4)}`}
                     creatorEths={105 - i * 0.534}
                   />
-                ))} */}
+                ))}
                 {!hideButton && (
                 <>
                   <div onClick={() => { handleScroll('left'); }} className="absolute top-45 left-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">

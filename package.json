@@ -18,6 +18,8 @@
     "eslint-plugin-tailwindcss": "^3.8.0",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.7.2",
+    "firebase": "^9.15.0",
+    "firebase-tools": "^11.20.0",
     "hardhat": "^2.12.5",
     "ipfs-http-client": "56.0.1",
     "next": "12.1.0",
