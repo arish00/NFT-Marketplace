@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import Image from 'next/image';
-import {listAll} from "firebase/storage";
+import { storage } from '../firebase';
+import {listAll, ref, getDownloadURL} from "firebase/storage";
 import { useTheme } from 'next-themes';
 
 import { Banner, CreatorCard, SearchBar, Loader } from '../components/index';
-import images from '../assets';
 import NFTCard from '../components/NFTCard.jsx';
 import { NFTContext } from '../context/NFTContext';
 import { getCreators } from '../utils/getTopCreators';
@@ -13,7 +13,10 @@ import { makeid } from '../utils/makeId';
 
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);
-  const [imageList, setImageList] = useState([])
+
+  const [imageList, setImageList] = useState([]);
+  const imageListRef = ref(storage, "/creators");
+
   const [hideButton, setHideButton] = useState(false);
   const { theme } = useTheme();
   const [nfts, setNfts] = useState([]);
@@ -31,6 +34,16 @@ const Home = () => {
         setIsLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    listAll(imageListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, [...prev, url]])
+        })
+      })
+    })
+  }, [])
 
   useEffect(() => {
     const sortedNfts = [...nfts];
@@ -78,7 +91,6 @@ const Home = () => {
     }
   };
 
-  // Hide arrows when all creator cards fit with the screen
   const isScrollable = () => {
     const { current } = scrollRef;
     const { current: parent } = parentRef;
@@ -99,6 +111,8 @@ const Home = () => {
   });
 
   const topCreators = getCreators(nftsCopy);
+
+  console.log(imageList)
 
   return (
     <div className="flex justify-center p-12 sm:px-4">
@@ -123,20 +137,12 @@ const Home = () => {
                   <CreatorCard
                     key={creator.seller}
                     rank={i + 1}
-                    creatorImage={images[`creator${i + 1}`]}
+                    creatorImage={`https://firebasestorage.googleapis.com/v0/b/nft-marketplace-332cc.appspot.com/o/creators%2Fcreator${i + 1}.png?alt=media&token=a9f5cabe-d7a8-462b-945e-3ef375913764`}
                     creatorName={shortenAddress(creator.seller)}
                     creatorEths={creator.sumall}
                   />
                 ))}
-                {[6, 7, 8, 9, 10].map((i) => (
-                  <CreatorCard
-                    key={`creator-${i}`}
-                    rank={i}
-                    creatorImage={images[`creator${i}`]}
-                    creatorName={`0x${makeid(3)}...${makeid(4)}`}
-                    creatorEths={105 - i * 0.534}
-                  />
-                ))}
+       
                 {!hideButton && (
                 <>
                   <div onClick={() => { handleScroll('left'); }} className="absolute top-45 left-0 h-8 w-8 cursor-pointer minlg:h-12 minlg:w-12">

@@ -89,7 +89,7 @@ const NFTDetails = () => {
           <p className="font-poppins text-xs font-normal text-nft-black-1 dark:text-white minlg:text-base">Creator</p>
           <div className="mt-3 flex flex-row items-center">
             <div className="relative mr-2 h-12 w-12 minlg:h-20 minlg:w-20">
-              <Image src={images.creator1} objectFit="cover" className="rounded-full" />
+              <Image src={`https://firebasestorage.googleapis.com/v0/b/nft-marketplace-332cc.appspot.com/o/creators%2Fcreator${1}.png?alt=media&token=a9f5cabe-d7a8-462b-945e-3ef375913764`}  width={50} height={50}objectFit="cover" className="rounded-full" />
             </div>
             <p className="font-poppins text-sm font-semibold text-nft-black-1 dark:text-white minlg:text-lg">{shortenAddress(nft.owner)}</p>
           </div>

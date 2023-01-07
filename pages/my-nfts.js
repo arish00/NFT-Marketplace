@@ -76,7 +76,7 @@ const MyNFTs = () => {
 
         <div className="flexCenter z-0 -mt-20 flex-col">
           <div className="flexCenter h-40 w-40 rounded-full bg-white p-1 dark:bg-nft-black-2 sm:h-36 sm:w-36">
-            <Image src={images.creator1} className="rounded-full  object-cover" objectFit="cover" />
+            <Image src={`https://firebasestorage.googleapis.com/v0/b/nft-marketplace-332cc.appspot.com/o/creators%2Fcreator${1}.png?alt=media&token=a9f5cabe-d7a8-462b-945e-3ef375913764`} className="rounded-full  object-cover" objectFit="cover" width={200} height={200} />
           </div>
           <p className="mt-6 font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white">{shortenAddress(currentAccount)}</p>
         </div>
