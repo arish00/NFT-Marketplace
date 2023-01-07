@@ -10,7 +10,7 @@ module.exports = {
 
     },
     hardhat: {
-      chainId: 1337,
+      chainId: 5,
     },
   },
 };
