@@ -13,6 +13,7 @@ const MyNFTs = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSelect, setActiveSelect] = useState('Recently Added');
 
+  //fetch data 
   useEffect(() => {
     fetchMyNFTsOrCreatedNFTs('fetchMyNFTs')
       .then((items) => {
