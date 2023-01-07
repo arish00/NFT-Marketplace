@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDsa3hw59MsKwI3WFqWz2I4IVLF4Zsejak",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API,
   authDomain: "nft-marketplace-332cc.firebaseapp.com",
   projectId: "nft-marketplace-332cc",
   storageBucket: "nft-marketplace-332cc.appspot.com",
