@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import Web3 from "web3";
 import { ethers } from "ethers";
 
@@ -11,6 +12,7 @@ const Intro = () => {
       await provider.send("wallet_switchEthereumChain", [
         { chainId: Web3.utils.toHex(5) },
       ]);
+
       await setActive(false);
     } catch (error) {
       console.error(error);
@@ -22,7 +24,7 @@ const Intro = () => {
     <div
       className={
         active
-          ? "h-54 fixed z-50 mt-4 w-1/3 rounded-xl bg-nft-black-1"
+          ? "h-54 semimd:hidden fixed z-50 mt-4 w-1/3 rounded-xl bg-nft-black-1 md:hidden md:h-0 md:w-0"
           : "hidden h-0 w-0"
       }
     >
@@ -33,7 +35,7 @@ const Intro = () => {
         *Please consider all these nfts are fake and used for testing puposes in
         a testing network!
       </p>
-      <div className="flex w-full justify-center pb-8">
+      <div className="flex w-full justify-center pb-6">
         <button
           type="button"
           onClick={changeNetworkToGoerli}
@@ -479,6 +481,37 @@ const Intro = () => {
           </svg>
           Connect with MetaMask
         </button>
+      </div>
+
+      <div className="flex justify-center pb-6">
+        <div>
+          <div className="flex justify-center">
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+            >
+              <button className="mb-1 text-center font-poppins text-sm font-semibold hover:text-blue-400">
+                Install metamask?
+              </button>
+            </a>
+          </div>
+
+          <div className="flex justify-center">
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc"
+            >
+              <button className="text-center font-poppins text-sm font-semibold hover:text-blue-400">
+                Having cors or network error?
+              </button>
+            </a>
+          </div>
+          <p className="text-center text-xs font-semibold italic">
+            (Enable Moesif extension after installation)
+          </p>
+        </div>
       </div>
     </div>
   );

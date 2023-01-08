@@ -16,6 +16,8 @@ const client = ipfsHttpClient({
   protocol: "https",
   headers: {
     authorization: auth,
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE",
   },
   mode: "no-cors",
 });
