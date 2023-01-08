@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Web3 from "web3";
 import { ethers } from "ethers";
 
 const Intro = () => {
+  const [token, setToken] = useState(null);
   const [active, setActive] = useState(true);
 
   const changeNetworkToGoerli = async () => {
@@ -12,7 +13,6 @@ const Intro = () => {
       await provider.send("wallet_switchEthereumChain", [
         { chainId: Web3.utils.toHex(5) },
       ]);
-
       await setActive(false);
     } catch (error) {
       console.error(error);
@@ -20,14 +20,36 @@ const Intro = () => {
     }
   };
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (!storedToken) {
+      localStorage.setItem("token", true);
+    } else {
+      const newToken = localStorage.getItem("token");
+      setToken(newToken);
+      setActive(false);
+    }
+  }, [active]);
+
+  const handleClick = () => {
+    setActive(false);
+    console.log(active);
+  };
+
   return (
     <div
       className={
-        active
+        token === null || active === true
           ? "h-54 semimd:hidden fixed z-50 mt-4 w-1/3 rounded-xl bg-nft-black-1 md:hidden md:h-0 md:w-0"
           : "hidden h-0 w-0"
       }
     >
+      <button
+        className="absolute right-4 text-lg text-red-500"
+        onClick={handleClick}
+      >
+        x
+      </button>
       <h1 className="ml-4 mt-5 px-10 text-center font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">
         Please connect your Metamask Wallet to Ethereum Goerli Testnet
       </h1>
@@ -485,16 +507,30 @@ const Intro = () => {
 
       <div className="flex justify-center pb-6">
         <div>
-          <div className="flex justify-center">
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
-            >
-              <button className="mb-1 text-center font-poppins text-sm font-semibold hover:text-blue-400">
-                Install metamask?
-              </button>
-            </a>
+          <div className="flex">
+            <div className="flex justify-center pr-3">
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+              >
+                <button className="mb-1 text-center font-poppins text-sm font-semibold hover:text-blue-400">
+                  Install metamask?
+                </button>
+              </a>
+            </div>
+
+            <div className="flex justify-center pl-3">
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://goerlifaucet.com/"
+              >
+                <button className="text-center font-poppins text-sm font-semibold hover:text-blue-400">
+                  Get free Goerli ETH?
+                </button>
+              </a>
+            </div>
           </div>
 
           <div className="flex justify-center">
