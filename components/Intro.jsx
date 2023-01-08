@@ -540,7 +540,7 @@ const Intro = () => {
               href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc"
             >
               <button className="text-center font-poppins text-sm font-semibold hover:text-blue-400">
-                Having cors or network error?
+                Having keep loading error?
               </button>
             </a>
           </div>
