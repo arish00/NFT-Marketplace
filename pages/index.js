@@ -10,6 +10,7 @@ import { NFTContext } from '../context/NFTContext';
 import { getCreators } from '../utils/getTopCreators';
 import { shortenAddress } from '../utils/shortenAddress';
 import { makeid } from '../utils/makeId';
+import images from "../assets/index"
 
 const Home = () => {
   const { fetchNFTs } = useContext(NFTContext);
@@ -164,12 +165,12 @@ const Home = () => {
               <div className="mt-3 flex w-full flex-wrap justify-start md:justify-center">
                 {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
 
-                {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                {/* {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                   <NFTCard
                     key={`nft-${i}`}
                     nft={{
-                      i,
                       name: `Nifty NFT ${i}`,
+                      image: `https://firebasestorage.googleapis.com/v0/b/nft-marketplace-332cc.appspot.com/o/creators%2Fnft${i}.png?alt=media&token=a9f5cabe-d7a8-462b-945e-3ef375913764`,
                       price: (10 - i * 0.534).toFixed(2),
                       seller: `0x${makeid(3)}...${makeid(4)}`,
                       owner: `0x${makeid(3)}...${makeid(4)}`,

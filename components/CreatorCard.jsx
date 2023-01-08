@@ -20,7 +20,7 @@ const CreatorCard = ({ rank, creatorImage, creatorName, creatorEths }) => {
       </div>
       <div className="flexCenter mt-3 flex-col text-center minlg:mt-7">
         <p className="font-poppins text-base font-semibold text-nft-black-1 dark:text-white">{creatorName}</p>
-        <p className="mt-1 font-poppins text-base font-semibold text-nft-black-1 dark:text-white">{Number(creatorEths).toFixed(2)} <span className="font-normal">{nftCurrency}</span></p>
+        <p className="mt-1 font-poppins text-base font-semibold text-nft-black-1 dark:text-white">{Number(creatorEths).toFixed(3)} <span className="font-normal">{nftCurrency}</span></p>
       </div>
     </div>
   );

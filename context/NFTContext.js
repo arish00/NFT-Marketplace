@@ -17,6 +17,7 @@ const client = ipfsHttpClient({
     authorization: auth,
   },
 });
+
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 export const NFTContext = React.createContext();
 export const NFTProvider = ({ children }) => {
@@ -77,30 +78,26 @@ export const NFTProvider = ({ children }) => {
       console.log('Error uploading file to IPFS.', error);
     }
   };
+
   const fetchNFTs = async () => {
     setIsLoadingNFT(false);
 
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider('https://eth-goerli.g.alchemy.com/v2/nrwjWYK8BGomfvFAZ5DO_mTwwXQY8bQ_');
     const contract = fetchContract(provider);
 
     const data = await contract.fetchMarketItems();
+
     const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
       const tokenURI = await contract.tokenURI(tokenId);
       const { data: { image, name, description } } = await axios.get(tokenURI);
       const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
-      return {
-        price,
-        tokenId: tokenId.toNumber(),
-        seller,
-        owner,
-        image,
-        name,
-        description,
-        tokenURI,
-      };
+
+      return { price, tokenId: tokenId.toNumber(), seller, owner, image, name, description, tokenURI };
     }));
+
     return items;
   };
+
   const fetchMyNFTsOrCreatedNFTs = async (type) => {
     setIsLoadingNFT(false);
     const web3Modal = new Web3Modal();
