@@ -4,7 +4,7 @@ import { storage } from '../firebase';
 import {listAll, ref, getDownloadURL} from "firebase/storage";
 import { useTheme } from 'next-themes';
 
-import { Banner, CreatorCard, SearchBar, Loader } from '../components/index';
+import { Banner, CreatorCard, SearchBar, Loader, Intro } from '../components/index';
 import NFTCard from '../components/NFTCard.jsx';
 import { NFTContext } from '../context/NFTContext';
 import { getCreators } from '../utils/getTopCreators';
@@ -115,6 +115,8 @@ const Home = () => {
 
   return (
     <div className="flex justify-center p-12 sm:px-4">
+      {/* Used to put a wallet Switch request at the beginning */}
+      <Intro />
       <div className="w-full minmd:w-4/5">
         <Banner
           name={(<>Discover, collect, and sell <br /> extraordinary NFTs</>)}

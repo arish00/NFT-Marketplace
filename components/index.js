@@ -8,5 +8,6 @@ import Input from './Input.jsx';
 import Loader from './Loader.jsx';
 import Modal from './Modal.jsx';
 import SearchBar from './SearchBar.jsx';
+import Intro from './Intro.jsx';
 
-export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard, Input, Loader, Modal, SearchBar };
+export { Navbar, Footer, Button, Banner, CreatorCard, NFTCard, Input, Loader, Modal, SearchBar, Intro };
