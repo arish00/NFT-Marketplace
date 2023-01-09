@@ -2,7 +2,8 @@
 <br />
 <div align="center"><img src="./resources/Home.png" width="950" height="550"></div>
 
-#### Live Link: https://nft-marketplace-sovq9dcag-yasindunethmina.vercel.app/ (use moesif cors plugin if you experience keep loading or no network error)
+#### Live Link: https://nft-marketplace-sovq9dcag-yasindunethmina.vercel.app/ 
+##### (use moesif cors plugin if you experience keep loading or no network error)
 
 ## Welcome to the NFT Marketplace GitHub project! This project is a decentralized marketplace for buying and selling non-fungible tokens (NFTs), built using the following technologies:
 
