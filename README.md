@@ -50,8 +50,6 @@ To deploy the NFT Marketplace to production, follow these steps:
 </br>
 Build the application: npm run build
 Deploy the built application to your preferred hosting provider.
-Contributing
-We welcome contributions to the NFT Marketplace! If you have an idea for a new feature or have found a bug, please open an issue on the GitHub repository. If you would like to contribute code, please fork the repository and submit a pull request.
 
 # Contributing
 
