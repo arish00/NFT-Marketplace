@@ -51,7 +51,7 @@ const Intro = () => {
         x
       </button>
       <h1 className="ml-4 mt-5 px-10 text-center font-poppins text-2xl font-semibold text-nft-black-1 dark:text-white xs:ml-0 minlg:text-4xl">
-        Please connect your Metamask Wallet to Ethereum Goerli Testnet
+        Please connect your Metamask Wallet to Ethereum Network
       </h1>
       <p className="mt-5 mb-6 px-10 text-center font-poppins text-xs font-semibold text-red-500">
         *Please consider all these nfts are fake and used for testing puposes in
