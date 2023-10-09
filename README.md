@@ -2,9 +2,6 @@
 <br />
 <div align="center"><img src="./resources/Home.png" width="950" height="550"></div>
 
-#### Live Link: https://nft-marketplace-sovq9dcag-yasindunethmina.vercel.app/ 
-##### (download & enable moesif cors extension in your browser if you experience keep loading or no network error)
-
 ## Welcome to the NFT Marketplace GitHub project! This project is a decentralized marketplace for buying and selling non-fungible tokens (NFTs), built using the following technologies:
 
 • Next.js: A JavaScript framework for building server-rendered React applications.
