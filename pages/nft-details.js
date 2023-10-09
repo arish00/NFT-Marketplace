@@ -7,6 +7,7 @@ import { shortenAddress } from '../utils/shortenAddress';
 import { Button, Loader, Modal } from '../components';
 import images from '../assets';
 
+
 const PaymentBodyCmp = ({ nft, nftCurrency }) => (
   <div className="flex flex-col">
     <div className="flexBetween">
